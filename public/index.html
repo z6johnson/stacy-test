@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stacy's Boston Summer 2026</title>
+  <meta name="description" content="A handpicked list of things to do in Boston during summer 2026." />
+  <style>
+    :root {
+      --bg: #fff8ec;
+      --card: #ffffff;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --accent: #b91c1c;
+      --accent-soft: #fde2e2;
+      --line: #ecd9b5;
+      --chip: #f3f4f6;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    header {
+      padding: 32px 20px 12px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      margin: 0 0 6px;
+      letter-spacing: -0.02em;
+    }
+    .sub {
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+    .controls {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+      margin: 16px 0 20px;
+    }
+    @media (min-width: 640px) {
+      .controls { grid-template-columns: 2fr 1fr 1fr 1fr; }
+    }
+    input[type="search"], select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 15px;
+      background: #fff;
+      color: var(--ink);
+    }
+    input[type="search"]:focus, select:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+    .toggles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--chip);
+      border: 1px solid transparent;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle input { margin: 0; accent-color: var(--accent); }
+    .toggle.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .count {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .card h2 {
+      font-size: 18px;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .meta {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .desc {
+      font-size: 14px;
+      margin: 4px 0 0;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--chip);
+      color: var(--muted);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .tag.free { background: #dcfce7; color: #166534; }
+    .tag.paid { background: #fee2e2; color: #991b1b; }
+    .tag.outdoor { background: #e0f2fe; color: #075985; }
+    .card a {
+      align-self: flex-start;
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .card a:hover { text-decoration: underline; }
+    .empty {
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+    footer {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Stacy's Boston Summer 2026</h1>
+    <p class="sub">Handpicked things to do — concerts, festivals, free flicks, and more.</p>
+  </header>
+
+  <main>
+    <section class="controls" aria-label="Filters">
+      <input id="q" type="search" placeholder="Search events, venues, neighborhoods…" autocomplete="off" />
+      <select id="category" aria-label="Category">
+        <option value="">All categories</option>
+      </select>
+      <select id="month" aria-label="Month">
+        <option value="">All months</option>
+        <option value="2026-05">May</option>
+        <option value="2026-06">June</option>
+        <option value="2026-07">July</option>
+        <option value="2026-08">August</option>
+        <option value="2026-09">September</option>
+      </select>
+      <select id="sort" aria-label="Sort">
+        <option value="date">Sort by date</option>
+        <option value="name">Sort by name</option>
+      </select>
+    </section>
+
+    <div class="toggles" aria-label="Quick filters">
+      <label class="toggle"><input type="checkbox" id="freeOnly" /> Free only</label>
+      <label class="toggle"><input type="checkbox" id="kidFriendly" /> Kid-friendly</label>
+      <label class="toggle"><input type="checkbox" id="outdoor" /> Outdoor</label>
+    </div>
+
+    <p class="count" id="count"></p>
+    <section class="grid" id="grid" aria-live="polite"></section>
+    <p class="empty" id="empty" hidden>No events match your filters.</p>
+  </main>
+
+  <footer>
+    Data from <code>events.json</code> · Built for Stacy · Updated <span id="updated"></span>
+  </footer>
+
+  <script>
+    const state = {
+      events: [],
+      q: "",
+      category: "",
+      month: "",
+      sort: "date",
+      freeOnly: false,
+      kidFriendly: false,
+      outdoor: false,
+    };
+
+    const fmt = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", {
+      month: "short", day: "numeric"
+    });
+    const dateRange = (s, e) => s === e ? fmt(s) : `${fmt(s)} – ${fmt(e)}`;
+
+    async function load() {
+      const res = await fetch("./events.json", { cache: "no-store" });
+      const data = await res.json();
+      state.events = data.events;
+      document.getElementById("updated").textContent = data.lastUpdated;
+      const cats = [...new Set(data.events.map(e => e.category))].sort();
+      const sel = document.getElementById("category");
+      cats.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c;
+        opt.textContent = c.charAt(0).toUpperCase() + c.slice(1);
+        sel.appendChild(opt);
+      });
+      render();
+    }
+
+    function matches(ev) {
+      if (state.category && ev.category !== state.category) return false;
+      if (state.freeOnly && !ev.free) return false;
+      if (state.kidFriendly && !ev.kidFriendly) return false;
+      if (state.outdoor && !ev.outdoor) return false;
+      if (state.month) {
+        const inRange = ev.startDate.slice(0, 7) <= state.month && ev.endDate.slice(0, 7) >= state.month;
+        if (!inRange) return false;
+      }
+      if (state.q) {
+        const q = state.q.toLowerCase();
+        const hay = `${ev.name} ${ev.venue} ${ev.neighborhood} ${ev.description} ${ev.category}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    }
+
+    function render() {
+      const grid = document.getElementById("grid");
+      const empty = document.getElementById("empty");
+      const count = document.getElementById("count");
+
+      let list = state.events.filter(matches);
+      if (state.sort === "name") {
+        list.sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        list.sort((a, b) => a.startDate.localeCompare(b.startDate));
+      }
+
+      grid.innerHTML = "";
+      list.forEach(ev => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <h2>${ev.name}</h2>
+          <div class="meta">${dateRange(ev.startDate, ev.endDate)} · ${ev.neighborhood}</div>
+          <div class="meta">${ev.venue}</div>
+          <p class="desc">${ev.description}</p>
+          <div class="tags">
+            <span class="tag">${ev.category}</span>
+            <span class="tag ${ev.free ? "free" : "paid"}">${ev.free ? "Free" : "Paid"}</span>
+            ${ev.outdoor ? '<span class="tag outdoor">Outdoor</span>' : ""}
+            ${ev.kidFriendly ? '<span class="tag">Kid-friendly</span>' : ""}
+          </div>
+          ${ev.url ? `<a href="${ev.url}" target="_blank" rel="noopener noreferrer">Details →</a>` : ""}
+        `;
+        grid.appendChild(card);
+      });
+
+      empty.hidden = list.length !== 0;
+      count.textContent = `${list.length} event${list.length === 1 ? "" : "s"}`;
+
+      document.querySelectorAll(".toggle").forEach(label => {
+        const cb = label.querySelector("input");
+        label.classList.toggle("on", cb.checked);
+      });
+    }
+
+    function bind() {
+      document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; render(); });
+      document.getElementById("category").addEventListener("change", e => { state.category = e.target.value; render(); });
+      document.getElementById("month").addEventListener("change", e => { state.month = e.target.value; render(); });
+      document.getElementById("sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+      document.getElementById("freeOnly").addEventListener("change", e => { state.freeOnly = e.target.checked; render(); });
+      document.getElementById("kidFriendly").addEventListener("change", e => { state.kidFriendly = e.target.checked; render(); });
+      document.getElementById("outdoor").addEventListener("change", e => { state.outdoor = e.target.checked; render(); });
+    }
+
+    bind();
+    load().catch(err => {
+      document.getElementById("grid").innerHTML = `<p class="empty">Couldn't load events: ${err.message}</p>`;
+    });
+  </script>
+</body>
+</html>
