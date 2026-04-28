@@ -1,0 +1,10 @@
+{
+  "name": "stacy-boston-summer-2026",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A super-lightweight static site to help Stacy find events in Boston during summer 2026.",
+  "scripts": {
+    "dev": "npx serve public",
+    "start": "npx serve public"
+  }
+}
